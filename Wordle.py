@@ -33,21 +33,3 @@ def check_word():
         print('\nCongratulations, you have solved the Wordle!')
 
 check_word()
-
-"""
-How To Play
-Guess the Wordle in 6 tries.
-Each guess must be a valid 5-letter word.
-The color of the tiles will change to show how close your guess was to the word.
-
-Examples:
-
-√
-W is in the word and in the correct spot.
-
-≈
-I is in the word but in the wrong spot.
-
-X
-U is not in the word in any spot.
-"""
