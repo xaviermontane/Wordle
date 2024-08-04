@@ -1,41 +1,40 @@
-from random import randrange
+from random import choice
 
-word_list = ["WHILE", "DICTS", "FLOAT", "RANGE", "BREAK"]
+word_list = ["WHILE", "DICTS", "FLOAT", "RANGE", "BREAK", "LOOPS", "INPUT", "PRINT", 
+  "TUPLE", "LISTS", "STRIN", "FUNCT", "CLASS", "FILES", "ERROR", "RAISE", 
+  "LOCAL", "YIELD", "REGEX", "STRIP"]
+word = choice(word_list)
 
-word = randrange(0, 5)
-word = word_list[word]  # Wordle
-
-def check_word():
-  count = 0  # Correct hits
-  tries = 6 # Available tries
-  hits = ["_", "_", "_", "_", "_"] # User progress
+def play_wordle():
+  count = 0
+  tries = 6
+  hits = ["_", "_", "_", "_", "_"]
 
   while count < 5 and tries > 0:
     print("\n–––––––––––—")
     print(f"You have {tries} tries left.")
     print(f"You have found {count} letters.")
 
-    guess = str(input("\nChoose a word: ").upper()) # User input
+    guess = input("\nChoose a word: ").upper()
     print("–––––––––––—\n")
-    if len(guess) < 5 or len(guess) > 5 or guess.isalpha() is False:
+    if len(guess) != 5 or not guess.isalpha():
       print("[!] — Please enter a 5 letter word.")
       continue
     tries -= 1
 
-    for char in guess:
-      if char in word and word.index(char) == guess.index(char):
-        print(f"{char} | √") # Output purpose only
-        # Insert and count logic
+    for i, char in enumerate(guess):
+      if char == word[i]:
+        print(f"{char} | √")
         if char not in hits:
-          hits.insert(word.index(char), char)
+          hits[i] = char
           count += 1
       elif char in word:
-        print(f"{guess[guess.index(char)]} | ≈")  # Wrong spot symbol
+        print(f"{char} | ≈")
       else:
         print(f"{char} | X")
 
   if count == 5:
     print("\nCongratulations, you have solved the Wordle!")
-    print(f"The word was: {word.capitalize()}\n") 
+    print(f"The word was: {word.capitalize()}\n")
 
-check_word()
+play_wordle()
